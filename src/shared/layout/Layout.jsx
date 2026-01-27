@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
         <div className='flex flex-col min-h-screen'>
             <Cart open={openCart} onClose={onCloseCart} />
             <Header showDrawer={showDrawerCart} />
-            <main className="flex-grow p-4">
+            <main className="flex-grow">
                 {children}
             </main>
             <Footer />
@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
                     width: "70px",
                     height: "70px"
                 }}
+                href="https://wa.me/5493535637241" // Reemplaza con tu número de WhatsApp
                 className="whatsapp-float"
             />
         </div>

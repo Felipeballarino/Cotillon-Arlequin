@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+
+.title {
+  font-family: "Titan One", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  line-height: 1;
+}
+.villa-maria{
+    display:flex;
+    gap:.2rem
+}
+
+.letter {
+  display: inline-block;
+  -webkit-text-stroke: 2px black;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.25);
+}
+
+/* Colores */
+.red {
+  color: #e53935;
+}
+
+.yellow {
+  color: #fbc02d;
+}
+
+.blue {
+  color: #1e88e5;
+}
+
+/* Efecto doblado */
+.bend-left {
+  transform: rotate(-6deg) translateY(2px);
+}
+
+.bend-right {
+  transform: rotate(6deg) translateY(-2px);
+}
