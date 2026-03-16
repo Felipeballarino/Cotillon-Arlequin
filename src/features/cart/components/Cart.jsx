@@ -5,6 +5,8 @@ import { formatearPrecio, generarMensajeWhatsApp } from '../../../utils/helpers'
 import Swal from 'sweetalert2'
 // import { useNavigate } from 'react-router-dom'
 import { useCartStore } from '../../../store/cartStore'
+import { newSale } from '../services/cartServices'
+
 
 
 const Cart = ({ open, onClose }) => {
@@ -17,30 +19,39 @@ const Cart = ({ open, onClose }) => {
         clearCart
     } = useCartStore()
 
+    const armarPedido = async () => {
+        return await newSale(cart, cartTotal())
+    }
+
+
 
     const sendWppSubmit = async () => {
-        const mensaje = generarMensajeWhatsApp(cart, cartTotal);
-        const telefono = "5493535637241";
-        const url = `https://wa.me/${telefono}?text=${mensaje}`;
-        window.open(url, '_blank');
-        const result = await Swal.fire({
-            title: '¿Pudiste comunicarte con el vendedor por WhatsApp?',
-            text: 'Esto nos ayuda a confirmar tu pedido.',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, me comuniqué',
-            cancelButtonText: 'No aún',
-        });
-
-        if (result.isConfirmed) {
-            clearCart();
-            onClose();
-            await Swal.fire({
-                title: '¡Gracias por tu compra!',
-                icon: 'success',
-                timer: 2000,
-                showConfirmButton: false,
+        const pedido = await armarPedido()
+        console.log(pedido)
+        if (pedido.success) {
+            const mensaje = generarMensajeWhatsApp(cart, cartTotal);
+            const telefono = "5493535637241";
+            const url = `https://wa.me/${telefono}?text=${mensaje}`;
+            window.open(url, '_blank');
+            const result = await Swal.fire({
+                title: '¿Pudiste comunicarte con el vendedor por WhatsApp?',
+                text: 'Esto nos ayuda a confirmar tu pedido.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, me comuniqué',
+                cancelButtonText: 'No aún',
             });
+
+            if (result.isConfirmed) {
+                clearCart();
+                onClose();
+                await Swal.fire({
+                    title: '¡Gracias por tu compra!',
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+            }
         }
     }
 
@@ -58,8 +69,8 @@ const Cart = ({ open, onClose }) => {
                                         src={item.img1}
                                         alt={item.descripcion}
                                         className='w-16 h-16 object-cover rounded'
-                                    loading="lazy"
-                                />
+                                        loading="lazy"
+                                    />
                                     :
                                     <img
                                         src={imgNoDisp}
@@ -114,13 +125,7 @@ const Cart = ({ open, onClose }) => {
                         Finalizar Compra
                     </Button>
 
-                    {/* <Button type='primary'
-                        block
-                        size='large'
-                        disabled={cart.length === 0}
-                        onClick={() => navigate("/checkout")}>
-                        Finalizar Compra
-                    </Button> */}
+
                 </div>
 
             </div>

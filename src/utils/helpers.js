@@ -13,7 +13,7 @@ export const generarMensajeWhatsApp = (cart, cartTotal) => {
 
     });
 
-    mensaje += `Total: $${cartTotal}%0A`;
+    mensaje += `Total: $${cartTotal()}%0A`;
     mensaje += "¿Cómo puedo continuar con la compra?";
 
     return mensaje;
