@@ -27,7 +27,6 @@ const Cart = ({ open, onClose }) => {
 
     const sendWppSubmit = async () => {
         const pedido = await armarPedido()
-        console.log(pedido)
         if (pedido.success) {
             const mensaje = generarMensajeWhatsApp(cart, cartTotal);
             const telefono = "5493535637241";
