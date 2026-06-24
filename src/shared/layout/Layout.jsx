@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
                     width: "70px",
                     height: "70px"
                 }}
-                href="https://wa.me/5493535637241" // Reemplaza con tu número de WhatsApp
+                href="https://wa.me/5493534590005"  // Reemplaza con tu número de WhatsApp
                 className="whatsapp-float"
             />
         </div>

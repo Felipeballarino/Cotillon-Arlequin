@@ -1,22 +1,22 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Titan+One&display=swap');
 
 @theme {
-  --color-white:#ffffff;
-  --color-grey:#efefef;
+  --color-white: #ffffff;
+  --color-grey: #f3f4f6;
   --color-green: #51a424;
-  --color-darkgreen:#007a33;
+  --color-darkgreen: #007a33;
+  --color-brand: #e53935;
 }
 
-
 :root {
- font-family: "Titan One", sans-serif;
-  line-height: 1.5;
+  font-family: "Nunito", sans-serif;
+  line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color:#213547;
-  background-color: #efefef;
+  color-scheme: light;
+  color: #111827;
+  background-color: #f3f4f6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,66 +24,54 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
 }
 
+/* ── WhatsApp float button ── */
 .ant-float-btn-body {
   background-color: #25D366 !important;
   color: white !important;
-
 }
-
 .ant-float-btn-body:hover {
   background-color: #20b358 !important;
 }
-
 .ant-float-btn-body:focus {
   background-color: #1da851 !important;
 }
-
 .ant-float-btn-icon {
   width: 40px !important;
-  font-size: 23px !important
+  font-size: 23px !important;
 }
 
+/* ── Search input ── */
 .custom-search .ant-input {
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 10px 12px;
-}
-
-.custom-search .ant-btn {
-  border-radius: 12px;
-      height: initial;
-}
-
-.ant-checkbox-wrapper {
+  font-family: "Nunito", sans-serif;
   font-size: 0.95rem;
 }
+.custom-search .ant-btn {
+  border-radius: 10px;
+  height: initial;
+}
 
+/* ── Sidebar filters ── */
+.ant-checkbox-wrapper {
+  font-size: 0.9rem;
+  font-family: "Nunito", sans-serif;
+}
 .ant-collapse-header {
   padding: 0 !important;
   font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
 }
 
-
-
-.red {
-  color: #e53935;
-}
-
-.yellow {
-  color: #fbc02d;
-}
-
-.blue {
-  color: #1e88e5;
-}
-
-.green {
-  color: #00b800;
-}
+/* ── Icon color helpers ── */
+.red   { color: #e53935; }
+.yellow { color: #fbc02d; }
+.blue  { color: #1e88e5; }
+.green { color: #00b800; }

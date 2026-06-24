@@ -8,6 +8,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem';
 import logoSinFondo from "../../assets/arlequin.png"
+import { BsCart4 } from "react-icons/bs";
+import { MdLocalShipping } from "react-icons/md";
 
 import "./styles.css"
 
@@ -40,50 +42,61 @@ const Header = ({ showDrawer }) => {
 
     return (
         <>
-            <header
-                className={`
-                    w-full flex justify-between items-center
-                    md:px-5 px-2 md:py-2 py-4
-                    fixed top-0 z-100 md:h-[130px]
-                    transition-colors duration-300 ease-in-out
-                    ${scrollY > 200 || viewPath ? "bg-white" : "bg-transparent"}
-                `}
-            >
-                <Link to={"/"} className='md:w-[10%] w-[30%] '>
+            <header className="w-full fixed top-0 z-100 flex flex-col">
+
+                {/* Announcement bar — always visible */}
+                <div className="bg-[#e53935] flex justify-center gap-4 text-white text-center py-2 px-4 text-xs md:text-sm font-bold tracking-widest uppercase">
+                    <span className="flex items-center gap-1"><BsCart4 /> Compra mínima: $100.000</span>
+                    <span className="text-white/40">|</span>
+                    <span className="flex items-center gap-1"><MdLocalShipping /> Envíos a todo el país</span>
+                </div>
+
+                {/* Nav */}
+                <div
+                    className={`
+                        w-full flex justify-between items-center
+                        md:px-8 px-3
+                        md:h-[80px] h-[56px]
+                        transition-all duration-300 ease-in-out
+                        ${scrollY > 200 || viewPath
+                            ? "bg-white shadow-sm border-b border-gray-100"
+                            : "bg-transparent"
+                        }
+                    `}
+                >
+                    <Link to={"/"} className='md:w-[8%] w-[26%]'>
                     <img src={logoSinFondo} alt="logo" />
                 </Link>
                 <Link to={"/"} className="hidden md:flex">
-                    <h1 class="title">
-                        <div >
-                            <span class="letter red bend-left">M</span>
-                            <span class="letter yellow">A</span>
-                            <span class="letter yellow bend-right">Y</span>
-                            <span class="letter yellow">O</span>
-                            <span class="letter blue">R</span>
-                            <span class="letter red bend-left">I</span>
-                            <span class="letter red">S</span>
-                            <span class="letter red">T</span>
-                            <span class="letter yellow">A</span>
-                        </div>
-                        <div className='villa-maria'>
+                        <h1 className="title">
                             <div>
-                                <span class="letter yellow bend-left">V</span>
-                                <span class="letter yellow">I</span>
-                                <span class="letter yellow bend-right">L</span>
-                                <span class="letter yellow">L</span>
-                                <span class="letter yellow">A</span>
+                                <span className="letter red bend-left">M</span>
+                                <span className="letter yellow">A</span>
+                                <span className="letter yellow bend-right">Y</span>
+                                <span className="letter yellow">O</span>
+                                <span className="letter blue">R</span>
+                                <span className="letter red bend-left">I</span>
+                                <span className="letter red">S</span>
+                                <span className="letter red">T</span>
+                                <span className="letter yellow">A</span>
+                        </div>
+                            <div className="villa-maria">
+                            <div>
+                                    <span className="letter yellow bend-left">V</span>
+                                    <span className="letter yellow">I</span>
+                                    <span className="letter yellow bend-right">L</span>
+                                    <span className="letter yellow">L</span>
+                                    <span className="letter yellow">A</span>
                             </div>
                             <div>
-                                <span class="letter blue bend-left">M</span>
-                                <span class="letter blue">A</span>
-                                <span class="letter blue">R</span>
-                                <span class="letter yellow">I</span>
-                                <span class="letter blue">A</span>
-
+                                    <span className="letter blue bend-left">M</span>
+                                    <span className="letter blue">A</span>
+                                    <span className="letter blue">R</span>
+                                    <span className="letter yellow">I</span>
+                                    <span className="letter blue">A</span>
                             </div>
                         </div>
-                    </h1>
-
+                        </h1>
                 </Link>
                 <div className='flex'>
                     <IconButton onClick={showDrawer}>
@@ -161,7 +174,9 @@ const Header = ({ showDrawer }) => {
                     </Menu>
                 </div>
 
-            </header >
+                </div>{/* end nav */}
+
+            </header>
 
             {/* MODAL LOGIN */}
             <Login open={modalOpen} onClose={() => setModalOpen(false)} />

@@ -6,76 +6,64 @@ import { Image } from "antd";
 import imgNoDisp from "../../../../assets/nodisp.jpg"
 
 const ProductCard = ({ product }) => {
-
     const { addToCart } = useCartStore()
-
 
     const handleAddToCart = () => {
         addToCart(product, 1);
     };
 
     return (
-        <div
-            className="group bg-white rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 relative min-h-[320px]"
-        >
-            {/* DESCUENTO */}
+        <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 relative flex flex-col">
+
+            {/* Discount badge */}
             {product.descuento && product.descuento !== "0.00" && (
-                <div className="absolute top-4 left-4 bg-gray-900 text-white text-xs font-semibold py-1 px-3 rounded-full z-10">
+                <div className="absolute top-3 left-3 bg-[#e53935] text-white text-xs font-black py-1 px-3 rounded-full z-10 shadow-md">
                     {product.descuento}% OFF
                 </div>
             )}
 
-            {/* IMAGEN */}
-            <div className="overflow-hidden rounded-xl relative">
-                {product.img1 ?
-                    <Image
-                        style={{ objectFit: "cover" }}
-                        width="100%"
-                        height="12rem"
-                        src={product.img1}
-                        alt={product.nombre}
-                    />
-                    :
-                    <Image
-                        style={{ objectFit: "cover" }}
-                        width="100%"
-                        height="12rem"
-                        src={imgNoDisp}
-                        alt={product.nombre}
-                    />
-                }
+            {/* Image */}
+            <div className="overflow-hidden relative bg-gray-50">
+                <Image
+                    style={{ objectFit: "cover", display: "block" }}
+                    width="100%"
+                    height="200px"
+                    src={product.img1 || imgNoDisp}
+                    alt={product.nombre}
+                    preview={{ mask: "Ver imagen" }}
+                />
+                {/* Add to cart button */}
                 <button
                     onClick={handleAddToCart}
                     className="
-        mt-4 
-        flex items-center justify-center gap-2
-        rounded-full
-        bg-[#f09303d4] text-white
-        py-2
-        text-sm font-semibold
-        transition-all duration-300
-        hover:bg-[#d7880dd4] hover:shadow-md
-        active:scale-95
-        cursor-pointer
-        w-[40px]
-        h-[40px]
-        absolute bottom-4 right-4"
+                        absolute bottom-3 right-3 z-10
+                        w-10 h-10 rounded-full
+                        bg-[#e53935] text-white
+                        flex items-center justify-center
+                        shadow-md
+                        opacity-0 group-hover:opacity-100
+                        translate-y-2 group-hover:translate-y-0
+                        transition-all duration-300
+                        hover:bg-[#c62828]
+                        active:scale-90
+                        cursor-pointer
+                    "
+                    title="Agregar al carrito"
                 >
-                    <AddShoppingCartIcon fontSize="small" />
-                    {/* Agregar al carrito */}
+                    <AddShoppingCartIcon sx={{ fontSize: 18 }} />
                 </button>
             </div>
 
-            {/* INFO */}
-            <div className="mt-4">
-                <h3 className="text-xl text-center font-semibold leading-tight line-clamp-2">
+            {/* Info */}
+            <div className="p-4 flex flex-col gap-1 flex-1">
+                <h3 className="text-sm font-bold text-gray-800 leading-snug line-clamp-2 min-h-[2.5rem]">
                     {product.descripcion}
                 </h3>
-                <div className="flex justify-center items-center mt-2">
-                    <p className='text-gray-500 text-2xl'>{formatearPrecio(product.precio_final)}</p>
-                </div>
-
+                <p className="text-[#e53935] text-xl font-black mt-1">
+                    {formatearPrecio(product.precio_final)}
+                </p>
             </div>
+
         </div>
     )
 }

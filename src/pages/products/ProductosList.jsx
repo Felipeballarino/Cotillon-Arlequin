@@ -75,7 +75,7 @@ const Productos = () => {
         <>
             <Seo title="Catalogo" description="Catalogo web" />
             <Layout>
-                <div className="p-4 md:p-6 min-h-screen mt-30">
+                <div className="p-4 md:p-8 min-h-screen mt-[90px] md:mt-[114px]">
                     <div className="grid grid-cols-1 md:grid-cols-8 gap-6">
 
                         {/* FILTROS */}
