@@ -41,8 +41,8 @@ const ProductCard = ({ product }) => {
                         bg-[#e53935] text-white
                         flex items-center justify-center
                         shadow-md
-                        opacity-0 group-hover:opacity-100
-                        translate-y-2 group-hover:translate-y-0
+                        opacity-100 translate-y-0
+                        md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0
                         transition-all duration-300
                         hover:bg-[#c62828]
                         active:scale-90
