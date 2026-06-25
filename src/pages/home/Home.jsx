@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import Layout from '../../shared/layout/Layout'
 import Seo from '../../shared/seo/Seo'
-import FondoHome from "../../assets/fondoHome.png"
+// import FondoHome from "../../assets/fondoHome.png"
 import snacks from "../../assets/Snaks.png"
 import descartables from "../../assets/Descartable.png"
 import tortas from "../../assets/Reposteria.png"
 import cotillon from "../../assets/Cotillon.png"
 import especiales from "../../assets/Fechas especiales.png"
+import fondo from "../../assets/fondo.jpg"
 
 import { FaLocationDot } from "react-icons/fa6"
 import { FaPhone } from "react-icons/fa"
@@ -24,7 +25,7 @@ const Home = () => {
                 {/* ── Hero ── */}
                 <div className="md:h-screen h-[90vh] relative overflow-hidden">
                     <img
-                        src={FondoHome}
+                        src={fondo}
                         alt="fondo home"
                         className="w-full h-full object-cover absolute inset-0 z-0"
                     />
@@ -62,31 +63,31 @@ const Home = () => {
                         <Link to="productos" className="item-1">
                             <img src={snacks} alt="snacks" />
                             <div className="w-full h-full flex items-center justify-center relative z-10 bg-[#00000063]">
-                                <h3 className="text-white text-xl md:text-2xl font-black text-center">Combos de Snacks</h3>
+                                <h2 className="text-white text-xl md:text-2xl font-black text-center">Snacks</h2>
                             </div>
                         </Link>
                         <Link to="productos" className="item-2">
                             <img src={descartables} alt="golosinas" />
                             <div className="w-full h-full flex items-center justify-center relative z-10 bg-[#00000063]">
-                                <h3 className="text-white text-lg md:text-xl font-black text-center">Combos Descartables</h3>
+                                <h2 className="text-white text-lg md:text-2xl font-black text-center">Descartables</h2>
                             </div>
                         </Link>
                         <Link to="productos" className="item-3">
                             <img src={especiales} alt="alquiler" />
                             <div className="w-full h-full flex items-center justify-center relative z-10 bg-[#00000063]">
-                                <h3 className="text-white text-lg md:text-xl font-black text-center">Fechas Especiales</h3>
+                                <h2 className="text-white text-lg md:text-2xl font-black text-center">Fechas Especiales</h2>
                             </div>
                         </Link>
                         <Link to="productos" className="item-4">
                             <img src={tortas} alt="tortas" />
                             <div className="w-full h-full flex items-center justify-center relative z-10 bg-[#00000063]">
-                                <h3 className="text-white text-lg md:text-xl font-black text-center">Combos reposteros</h3>
+                                <h2 className="text-white text-lg md:text-2xl font-black text-center">Repostería</h2>
                             </div>
                         </Link>
                         <Link to="productos" className="item-5">
                             <img src={cotillon} alt="infantiles" />
                             <div className="w-full h-full flex items-center justify-center relative z-10 bg-[#00000063]">
-                                <h3 className="text-white text-lg md:text-xl font-black text-center">Cotillon</h3>
+                                <h2 className="text-white text-lg md:text-2xl font-black text-center">Cotillon</h2>
                             </div>
                         </Link>
                     </div>
