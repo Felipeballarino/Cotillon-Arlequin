@@ -45,7 +45,7 @@ const Home = () => {
                         {/* Título grande — se desvanece al scrollear */}
                         <div style={{ opacity: heroOpacity }} className="text-center select-none">
                             <h1 className="title-hero">
-                                <div>
+                                {/* <div>
                                     <span className="hero-letter red bend-left">A</span>
                                     <span className="hero-letter yellow">R</span>
                                     <span className="hero-letter blue bend-right">L</span>
@@ -54,7 +54,7 @@ const Home = () => {
                                     <span className="hero-letter yellow bend-left">U</span>
                                     <span className="hero-letter blue">Í</span>
                                     <span className="hero-letter red bend-right">N</span>
-                                </div>
+                                </div> */}
                                 <div>
                                     <span className="hero-letter yellow bend-left">C</span>
                                     <span className="hero-letter blue">O</span>
@@ -64,6 +64,18 @@ const Home = () => {
                                     <span className="hero-letter red bend-left">L</span>
                                     <span className="hero-letter yellow">O</span>
                                     <span className="hero-letter blue bend-right">N</span>
+                                </div>
+                                <div>
+                                    <span className="hero-letter red bend-left">M</span>
+                                    <span className="hero-letter yellow">A</span>
+                                    <span className="hero-letter blue bend-right">Y</span>
+                                    <span className="hero-letter yellow">O</span>
+                                    <span className="hero-letter red">R</span>
+                                    <span className="hero-letter yellow bend-left">I</span>
+                                    <span className="hero-letter blue">S</span>
+                                    <span className="hero-letter red bend-right">T</span>
+                                    <span className="hero-letter yellow">A</span>
+
                                 </div>
                             </h1>
                         </div>
