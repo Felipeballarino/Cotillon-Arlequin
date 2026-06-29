@@ -9,11 +9,20 @@ import cotillon from "../../assets/Cotillon.png"
 import especiales from "../../assets/Fechas especiales.png"
 import fondo from "../../assets/fondo.jpg"
 
-import { FaLocationDot, FaStar } from "react-icons/fa6"
-import { FaPhone } from "react-icons/fa"
-import { MdEmail, MdCake, MdShoppingBag, MdTheaterComedy, MdShoppingCart } from "react-icons/md"
+import { FaLocationDot } from "react-icons/fa6"
+import { FaPhone, FaStar } from "react-icons/fa"
+import { MdEmail, MdShoppingCart, MdTheaterComedy, MdShoppingBag, MdCake } from "react-icons/md"
 
 import "./styles.css"
+
+const TITLE_COLORS = ["#ff2e88", "#ff7a00", "#ffd400", "#3ad1c8", "#8a4dff", "#ff2e88", "#ffd400", "#8a4dff"]
+
+const CATEGORIES = [
+    { icon: <MdTheaterComedy size={22} className="text-pink-400" />, label: "COTILLÓN" },
+    { icon: <MdShoppingBag size={22} className="text-cyan-400" />, label: "DESCARTABLES" },
+    { icon: <MdCake size={22} className="text-yellow-400" />, label: "REPOSTERÍA" },
+    { icon: <FaStar size={18} className="text-yellow-300" />, label: "Y MUCHO MÁS" },
+]
 
 const Home = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -24,7 +33,7 @@ const Home = () => {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
-    const heroOpacity = Math.max(0, 1 - scrollY / 250)
+    const heroOpacity = Math.max(0, 1 - scrollY / 350)
 
     return (
         <>
@@ -32,87 +41,136 @@ const Home = () => {
             <Layout>
 
                 {/* ── Hero ── */}
-                <div className="md:h-screen h-[90vh] relative overflow-hidden">
-                    <img
-                        src={fondo}
-                        alt="fondo home"
-                        className="w-full h-full object-cover absolute inset-0 z-0"
-                    />
-                    <div className="absolute inset-0 bg-black/50 z-0" />
+                <section className="relative w-full overflow-hidden">
 
-                    <div className="relative z-10 h-full flex flex-col items-center justify-center gap-8 px-4">
-
-                        {/* Título grande — se desvanece al scrollear */}
-                        <div style={{ opacity: heroOpacity }} className="text-center select-none">
-                            <h1 className="title-hero">
-                                {/* <div>
-                                    <span className="hero-letter red bend-left">A</span>
-                                    <span className="hero-letter yellow">R</span>
-                                    <span className="hero-letter blue bend-right">L</span>
-                                    <span className="hero-letter yellow">E</span>
-                                    <span className="hero-letter red">Q</span>
-                                    <span className="hero-letter yellow bend-left">U</span>
-                                    <span className="hero-letter blue">Í</span>
-                                    <span className="hero-letter red bend-right">N</span>
-                                </div> */}
-                                <div>
-                                    <span className="hero-letter yellow bend-left">C</span>
-                                    <span className="hero-letter blue">O</span>
-                                    <span className="hero-letter red">T</span>
-                                    <span className="hero-letter yellow bend-right">I</span>
-                                    <span className="hero-letter blue">L</span>
-                                    <span className="hero-letter red bend-left">L</span>
-                                    <span className="hero-letter yellow">O</span>
-                                    <span className="hero-letter blue bend-right">N</span>
-                                </div>
-                                <div>
-                                    <span className="hero-letter red bend-left">M</span>
-                                    <span className="hero-letter yellow">A</span>
-                                    <span className="hero-letter blue bend-right">Y</span>
-                                    <span className="hero-letter yellow">O</span>
-                                    <span className="hero-letter red">R</span>
-                                    <span className="hero-letter yellow bend-left">I</span>
-                                    <span className="hero-letter blue">S</span>
-                                    <span className="hero-letter red bend-right">T</span>
-                                    <span className="hero-letter yellow">A</span>
-
-                                </div>
-                            </h1>
-                        </div>
-
-                        {/* Barra de categorías */}
-                        <div style={{ opacity: heroOpacity }} className="flex flex-wrap items-center justify-center gap-0 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1">
-                            <div className="hero-cat-item">
-                                <MdTheaterComedy className="text-pink-400" size={22} />
-                                <span>COTILLÓN</span>
-                            </div>
-                            <span className="text-white/30 px-1">|</span>
-                            <div className="hero-cat-item">
-                                <MdShoppingBag className="text-cyan-400" size={22} />
-                                <span>DESCARTABLES</span>
-                            </div>
-                            <span className="text-white/30 px-1">|</span>
-                            <div className="hero-cat-item">
-                                <MdCake className="text-yellow-400" size={22} />
-                                <span>REPOSTERÍA</span>
-                            </div>
-                            <span className="text-white/30 px-1">|</span>
-                            <div className="hero-cat-item">
-                                <FaStar className="text-yellow-300" size={22} />
-                                <span>Y MUCHO MÁS</span>
-                            </div>
-                        </div>
-
-                        {/* CTA */}
-                        <Link
-                            to="productos"
-                            className="flex items-center gap-3 bg-[#e91e8c] hover:bg-[#c2185b] text-white px-10 py-4 rounded-full font-extrabold text-xl tracking-wider transition-all duration-200 shadow-xl hover:shadow-[0_8px_30px_rgba(233,30,140,0.55)] hover:scale-105 active:scale-95"
-                        >
-                            <MdShoppingCart size={26} />
-                            VER CATÁLOGO
-                        </Link>
+                    {/* Barra superior de anuncios */}
+                    <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-1 bg-[#ec0d7e] px-4 py-2 text-center text-sm font-extrabold uppercase tracking-wide text-white sm:text-base">
+                        <span>🛒 Tu compra mínima: <span className="text-yellow-300">$100.000</span></span>
+                        <span className="hidden h-4 w-px bg-white/40 sm:inline-block" />
+                        <span>🚚 Envíos a todo el país 💜</span>
                     </div>
-                </div>
+
+                    {/* Hero con imagen de fondo */}
+                    <div className="relative min-h-[640px] md:min-h-screen">
+                        <img
+                            src={fondo}
+                            alt="fondo home"
+                            className="w-full h-full object-cover absolute inset-0 z-0"
+                        />
+                        <div className="absolute inset-0 bg-black/20 z-0" />
+
+                        <div
+                            style={{ opacity: heroOpacity }}
+                            className="relative z-10 flex flex-col items-center px-4 py-12 text-center"
+                        >
+                            {/* Título ARLEQUÍN con letras de colores */}
+                            <h1
+                                className="leading-none tracking-tight select-none"
+                                style={{ fontFamily: '"Titan One", sans-serif' }}
+                            >
+                                <span className="sr-only">ARLEQUÍN</span>
+                                <span
+                                    aria-hidden
+                                    className="flex justify-center items-end"
+                                    style={{
+                                        fontSize: "clamp(42px, 8vw, 100px)",
+                                        WebkitTextStroke: "3px #ffffff",
+                                    }}
+                                >
+                                    {"ARLEQUÍN".split("").map((ch, i, arr) => {
+                                        const mid = (arr.length - 1) / 2
+                                        const off = i - mid
+                                        return (
+                                            <span
+                                                key={i}
+                                                style={{
+                                                    display: "inline-block",
+                                                    color: TITLE_COLORS[i % TITLE_COLORS.length],
+                                                    textShadow: "0 4px 0 rgba(0,0,0,.25), 0 8px 14px rgba(0,0,0,.45)",
+                                                    transform: `rotate(${off * 2}deg) translateY(${off * off * 1.2}px)`,
+                                                }}
+                                            >
+                                                {ch}
+                                            </span>
+                                        )
+                                    })}
+                                </span>
+                            </h1>
+
+                            {/* Subtítulo COTILLON */}
+                            <h2
+                                className="-mt-2 leading-none select-none"
+                                style={{ fontFamily: '"Titan One", sans-serif' }}
+                            >
+                                <span className="sr-only">COTILLON</span>
+                                <span
+                                    aria-hidden
+                                    className="flex justify-center items-end"
+                                    style={{
+                                        fontSize: "clamp(28px, 6vw, 80px)",
+                                        WebkitTextStroke: "2px #ec0d7e",
+                                    }}
+                                >
+                                    {"COTILLON".split("").map((ch, i, arr) => {
+                                        const mid = (arr.length - 1) / 2
+                                        const off = i - mid
+                                        return (
+                                            <span
+                                                key={i}
+                                                style={{
+                                                    display: "inline-block",
+                                                    color: "white",
+                                                    textShadow: "0 4px 0 rgba(0,0,0,.25), 0 8px 14px rgba(0,0,0,.4)",
+                                                    transform: `rotate(${off * 2}deg) translateY(${off * off * 1.2}px)`,
+                                                }}
+                                            >
+                                                {ch}
+                                            </span>
+                                        )
+                                    })}
+                                </span>
+                            </h2>
+
+                            {/* Tagline */}
+                            <p
+                                className="mt-1"
+                                style={{
+                                    fontFamily: '"Lobster", cursive',
+                                    fontSize: "clamp(24px, 5vw, 64px)",
+                                    color: "white",
+                                    textShadow: "0 3px 8px rgba(0,0,0,.5)",
+                                }}
+                            >
+                                Mayorista Villa María
+                            </p>
+
+                            {/* Pills de categorías */}
+                            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-full bg-black/80 px-7 py-4 text-white shadow-xl backdrop-blur-sm">
+                                {CATEGORIES.map((c, i) => (
+                                    <div key={c.label} className="flex items-center gap-2">
+                                        {i > 0 && (
+                                            <span className="mr-4 hidden h-5 w-px bg-white/30 sm:inline-block" />
+                                        )}
+                                        <span className="text-lg">{c.icon}</span>
+                                        <span className="text-sm font-bold uppercase tracking-wide sm:text-base">
+                                            {c.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* CTA */}
+                            <Link
+                                to="productos"
+                                className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#ff1f8e] px-10 py-4 text-lg font-extrabold uppercase tracking-wide text-white shadow-[0_0_0_4px_rgba(255,31,142,0.35),0_10px_30px_rgba(255,31,142,0.5)] transition hover:scale-[1.03] hover:bg-[#ff3d9e]"
+                            >
+                                <MdShoppingCart size={24} />
+                                Ver catálogo
+                            </Link>
+
+                        </div>
+                    </div>
+                </section>
 
                 {/* ── Featured categories ── */}
                 <section className="py-16 px-6 max-w-screen-xl mx-auto">
