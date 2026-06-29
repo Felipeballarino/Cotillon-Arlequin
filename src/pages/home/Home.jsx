@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Layout from '../../shared/layout/Layout'
 import Seo from '../../shared/seo/Seo'
-// import FondoHome from "../../assets/fondoHome.png"
 import snacks from "../../assets/Snaks.png"
 import descartables from "../../assets/Descartable.png"
 import tortas from "../../assets/Reposteria.png"
@@ -9,14 +9,23 @@ import cotillon from "../../assets/Cotillon.png"
 import especiales from "../../assets/Fechas especiales.png"
 import fondo from "../../assets/fondo.jpg"
 
-import { FaLocationDot } from "react-icons/fa6"
+import { FaLocationDot, FaStar } from "react-icons/fa6"
 import { FaPhone } from "react-icons/fa"
-import { MdEmail } from "react-icons/md"
-import { IoTimeSharp } from "react-icons/io5"
+import { MdEmail, MdCake, MdShoppingBag, MdTheaterComedy, MdShoppingCart } from "react-icons/md"
 
 import "./styles.css"
 
 const Home = () => {
+    const [scrollY, setScrollY] = useState(0)
+
+    useEffect(() => {
+        const handleScroll = () => setScrollY(window.scrollY)
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
+
+    const heroOpacity = Math.max(0, 1 - scrollY / 250)
+
     return (
         <>
             <Seo title="Home" description="Bienvenido a mi sitio web" />
@@ -29,22 +38,67 @@ const Home = () => {
                         alt="fondo home"
                         className="w-full h-full object-cover absolute inset-0 z-0"
                     />
-                    <div className="absolute inset-0 bg-black/45 z-0" />
+                    <div className="absolute inset-0 bg-black/50 z-0" />
 
-                    <div className="relative z-10 h-full flex flex-col items-center justify-center gap-60">
-                        <div className="bg-black text-white w-full flex text-center justify-center font-semibold py-1">
-                            <p className="whitespace-pre-wrap md:text-[16px] text-[12px] md:tracking-[0.1rem]">
-                                COTILLON  -  DESCARTABLES  -  REPOSTERIA Y MUCHO MAS
-                            </p>
+                    <div className="relative z-10 h-full flex flex-col items-center justify-center gap-8 px-4">
+
+                        {/* Título grande — se desvanece al scrollear */}
+                        <div style={{ opacity: heroOpacity }} className="text-center select-none">
+                            <h1 className="title-hero">
+                                <div>
+                                    <span className="hero-letter red bend-left">A</span>
+                                    <span className="hero-letter yellow">R</span>
+                                    <span className="hero-letter blue bend-right">L</span>
+                                    <span className="hero-letter yellow">E</span>
+                                    <span className="hero-letter red">Q</span>
+                                    <span className="hero-letter yellow bend-left">U</span>
+                                    <span className="hero-letter blue">Í</span>
+                                    <span className="hero-letter red bend-right">N</span>
+                                </div>
+                                <div>
+                                    <span className="hero-letter yellow bend-left">C</span>
+                                    <span className="hero-letter blue">O</span>
+                                    <span className="hero-letter red">T</span>
+                                    <span className="hero-letter yellow bend-right">I</span>
+                                    <span className="hero-letter blue">L</span>
+                                    <span className="hero-letter red bend-left">L</span>
+                                    <span className="hero-letter yellow">O</span>
+                                    <span className="hero-letter blue bend-right">N</span>
+                                </div>
+                            </h1>
                         </div>
-                        <div>
-                            <Link
-                                to="productos"
-                                className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition font-extrabold text-2xl cursor-pointer"
-                            >
-                                VER CATÁLOGO
-                            </Link>
+
+                        {/* Barra de categorías */}
+                        <div style={{ opacity: heroOpacity }} className="flex flex-wrap items-center justify-center gap-0 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1">
+                            <div className="hero-cat-item">
+                                <MdTheaterComedy className="text-pink-400" size={22} />
+                                <span>COTILLÓN</span>
+                            </div>
+                            <span className="text-white/30 px-1">|</span>
+                            <div className="hero-cat-item">
+                                <MdShoppingBag className="text-cyan-400" size={22} />
+                                <span>DESCARTABLES</span>
+                            </div>
+                            <span className="text-white/30 px-1">|</span>
+                            <div className="hero-cat-item">
+                                <MdCake className="text-yellow-400" size={22} />
+                                <span>REPOSTERÍA</span>
+                            </div>
+                            <span className="text-white/30 px-1">|</span>
+                            <div className="hero-cat-item">
+                                <FaStar className="text-yellow-300" size={22} />
+                                <span>Y MUCHO MÁS</span>
+                            </div>
                         </div>
+
+                        {/* CTA */}
+                        <Link
+                            to="productos"
+                            className="flex items-center gap-3 bg-[#e91e8c] hover:bg-[#c2185b] text-white px-10 py-4 rounded-full font-extrabold text-xl tracking-wider transition-all duration-200 shadow-xl hover:shadow-[0_8px_30px_rgba(233,30,140,0.55)] hover:scale-105 active:scale-95"
+                        >
+                            <MdShoppingCart size={26} />
+                            VER CATÁLOGO
+                        </Link>
                     </div>
                 </div>
 
@@ -52,7 +106,7 @@ const Home = () => {
                 <section className="py-16 px-6 max-w-screen-xl mx-auto">
                     <div className="mb-8">
                         <h2 className="text-4xl md:text-5xl text-gray-900 leading-tight" style={{ fontFamily: '"Titan One", sans-serif' }}>
-                            Las más <span className="text-[#e53935]">buscadas</span>
+                            Las más <span className="text-[#e91e8c]">buscadas</span>
                         </h2>
                         <p className="text-gray-500 mt-2 text-base md:text-lg font-medium">
                             Explorá las categorías más populares

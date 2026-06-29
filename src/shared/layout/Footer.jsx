@@ -5,7 +5,7 @@ import { IoTimeSharp } from "react-icons/io5"
 
 const Footer = () => {
     return (
-        <footer className="bg-[#e53935] text-white">
+        <footer className="bg-[#e91e8c] text-white">
             <div className="max-w-screen-xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
 
                 {/* Brand */}

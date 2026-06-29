@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
 
             {/* Discount badge */}
             {product.descuento && product.descuento !== "0.00" && (
-                <div className="absolute top-3 left-3 bg-[#e53935] text-white text-xs font-black py-1 px-3 rounded-full z-10 shadow-md">
+                <div className="absolute top-3 left-3 bg-[#e91e8c] text-white text-xs font-black py-1 px-3 rounded-full z-10 shadow-md">
                     {product.descuento}% OFF
                 </div>
             )}
@@ -38,13 +38,13 @@ const ProductCard = ({ product }) => {
                     className="
                         absolute bottom-3 right-3 z-10
                         w-10 h-10 rounded-full
-                        bg-[#e53935] text-white
+                        bg-[#e91e8c] text-white
                         flex items-center justify-center
                         shadow-md
                         opacity-100 translate-y-0
                         md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0
                         transition-all duration-300
-                        hover:bg-[#c62828]
+                        hover:bg-[#c2185b]
                         active:scale-90
                         cursor-pointer
                     "
@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
                 <h3 className="text-sm font-bold text-gray-800 leading-snug line-clamp-2 min-h-[2.5rem]">
                     {product.descripcion}
                 </h3>
-                <p className="text-[#e53935] text-xl font-black mt-1">
+                <p className="text-[#e91e8c] text-xl font-black mt-1">
                     {formatearPrecio(product.precio_final)}
                 </p>
             </div>

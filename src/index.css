@@ -6,7 +6,7 @@
   --color-grey: #f3f4f6;
   --color-green: #51a424;
   --color-darkgreen: #007a33;
-  --color-brand: #e53935;
+  --color-brand: #e91e8c;
 }
 
 :root {
@@ -71,7 +71,7 @@ body {
 }
 
 /* ── Icon color helpers ── */
-.red   { color: #e53935; }
+.red   { color: #e91e8c; }
 .yellow { color: #fbc02d; }
 .blue  { color: #1e88e5; }
 .green { color: #00b800; }

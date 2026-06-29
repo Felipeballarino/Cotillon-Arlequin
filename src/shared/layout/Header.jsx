@@ -45,8 +45,8 @@ const Header = ({ showDrawer }) => {
             <header className="w-full fixed top-0 z-100 flex flex-col">
 
                 {/* Announcement bar — always visible */}
-                <div className="bg-[#e53935] flex justify-center gap-4 text-white text-center py-2 px-4 text-xs md:text-sm font-bold tracking-widest uppercase">
-                    <span className="flex items-center gap-1"><BsCart4 /> Compra mínima: $100.000</span>
+                <div className="bg-[#e91e8c] flex justify-center gap-4 text-white text-center py-2 px-4 text-xs md:text-sm font-bold tracking-widest uppercase">
+                    <span className="flex items-center gap-1"><BsCart4 /> Compra mínima: <span style={{ color: "yellow" }}>$100.000</span></span>
                     <span className="text-white/40">|</span>
                     <span className="flex items-center gap-1"><MdLocalShipping /> Envíos a todo el país</span>
                 </div>
@@ -67,34 +67,31 @@ const Header = ({ showDrawer }) => {
                     <Link to={"/"} className='md:w-[8%] w-[26%]'>
                     <img src={logoSinFondo} alt="logo" />
                 </Link>
-                <Link to={"/"} className="hidden md:flex">
+                    <Link
+                        to={"/"}
+                        className="hidden md:flex transition-opacity duration-300"
+                        style={{ opacity: scrollY > 150 || viewPath ? 1 : 0, pointerEvents: scrollY > 150 || viewPath ? 'auto' : 'none' }}
+                    >
                         <h1 className="title">
                             <div>
-                                <span className="letter red bend-left">M</span>
-                                <span className="letter yellow">A</span>
-                                <span className="letter yellow bend-right">Y</span>
-                                <span className="letter yellow">O</span>
-                                <span className="letter blue">R</span>
-                                <span className="letter red bend-left">I</span>
-                                <span className="letter red">S</span>
+                                <span className="letter red bend-left">A</span>
+                                <span className="letter yellow">R</span>
+                                <span className="letter blue bend-right">L</span>
+                                <span className="letter yellow">E</span>
+                                <span className="letter red">Q</span>
+                                <span className="letter yellow bend-left">U</span>
+                                <span className="letter blue">Í</span>
+                                <span className="letter red bend-right">N</span>
+                            </div>
+                            <div>
+                                <span className="letter yellow bend-left">C</span>
+                                <span className="letter blue">O</span>
                                 <span className="letter red">T</span>
-                                <span className="letter yellow">A</span>
-                        </div>
-                            <div className="villa-maria">
-                            <div>
-                                    <span className="letter yellow bend-left">V</span>
-                                    <span className="letter yellow">I</span>
-                                    <span className="letter yellow bend-right">L</span>
-                                    <span className="letter yellow">L</span>
-                                    <span className="letter yellow">A</span>
-                            </div>
-                            <div>
-                                    <span className="letter blue bend-left">M</span>
-                                    <span className="letter blue">A</span>
-                                    <span className="letter blue">R</span>
-                                    <span className="letter yellow">I</span>
-                                    <span className="letter blue">A</span>
-                            </div>
+                                <span className="letter yellow bend-right">I</span>
+                                <span className="letter blue">L</span>
+                                <span className="letter red bend-left">L</span>
+                                <span className="letter yellow">O</span>
+                                <span className="letter blue bend-right">N</span>
                         </div>
                         </h1>
                 </Link>
