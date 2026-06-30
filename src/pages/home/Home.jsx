@@ -43,12 +43,9 @@ const Home = () => {
                 {/* ── Hero ── */}
                 <section className="relative w-full overflow-hidden">
 
-                    {/* Barra superior de anuncios */}
-                    <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-1 bg-[#ec0d7e] px-4 py-2 text-center text-sm font-extrabold uppercase tracking-wide text-white sm:text-base">
-                        <span>🛒 Tu compra mínima: <span className="text-yellow-300">$100.000</span></span>
-                        <span className="hidden h-4 w-px bg-white/40 sm:inline-block" />
-                        <span>🚚 Envíos a todo el país 💜</span>
-                    </div>
+                    {/* Barra superior de anuncios*/}
+                    <div className="flex flex-wrap h-10 items-center justify-center gap-x-10 gap-y-1 bg-[#ec0d7e] px-4 py-2 text-center text-sm font-extrabold uppercase tracking-wide text-white sm:text-base">
+                    </div> 
 
                     {/* Hero con imagen de fondo */}
                     <div className="relative min-h-[640px] md:min-h-screen">
@@ -61,7 +58,7 @@ const Home = () => {
 
                         <div
                             style={{ opacity: heroOpacity }}
-                            className="relative z-10 flex flex-col items-center px-4 py-12 text-center"
+                            className="relative z-10 flex flex-col items-center px-4 md:pt-1 pt-28 py-12 text-center"
                         >
                             {/* Título ARLEQUÍN con letras de colores */}
                             <h1
@@ -71,9 +68,9 @@ const Home = () => {
                                 <span className="sr-only">ARLEQUÍN</span>
                                 <span
                                     aria-hidden
-                                    className="flex justify-center items-end"
+                                    className="flex flex-nowrap justify-center items-end"
                                     style={{
-                                        fontSize: "clamp(42px, 8vw, 100px)",
+                                        fontSize: "clamp(40px, 11vw, 100px)",
                                         WebkitTextStroke: "3px #ffffff",
                                     }}
                                 >
@@ -83,11 +80,12 @@ const Home = () => {
                                         return (
                                             <span
                                                 key={i}
+                                                className="flex-shrink-0"
                                                 style={{
                                                     display: "inline-block",
                                                     color: TITLE_COLORS[i % TITLE_COLORS.length],
                                                     textShadow: "0 4px 0 rgba(0,0,0,.25), 0 8px 14px rgba(0,0,0,.45)",
-                                                    transform: `rotate(${off * 2}deg) translateY(${off * off * 1.2}px)`,
+                                                    transform: `rotate(${off * 1}deg) translateY(${off * off * 0.6}px)`,
                                                 }}
                                             >
                                                 {ch}
@@ -105,9 +103,9 @@ const Home = () => {
                                 <span className="sr-only">COTILLON</span>
                                 <span
                                     aria-hidden
-                                    className="flex justify-center items-end"
+                                    className="flex flex-nowrap justify-center items-end"
                                     style={{
-                                        fontSize: "clamp(28px, 6vw, 80px)",
+                                        fontSize: "clamp(28px, 8vw, 80px)",
                                         WebkitTextStroke: "2px #ec0d7e",
                                     }}
                                 >
@@ -117,11 +115,12 @@ const Home = () => {
                                         return (
                                             <span
                                                 key={i}
+                                                className="flex-shrink-0"
                                                 style={{
                                                     display: "inline-block",
                                                     color: "white",
                                                     textShadow: "0 4px 0 rgba(0,0,0,.25), 0 8px 14px rgba(0,0,0,.4)",
-                                                    transform: `rotate(${off * 2}deg) translateY(${off * off * 1.2}px)`,
+                                                    transform: `rotate(${off * 1}deg) translateY(${off * off * 0.6}px)`,
                                                 }}
                                             >
                                                 {ch}
@@ -145,7 +144,7 @@ const Home = () => {
                             </p>
 
                             {/* Pills de categorías */}
-                            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-full bg-black/80 px-7 py-4 text-white shadow-xl backdrop-blur-sm">
+                            <div className="md:flex hidden mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-full bg-black/80 px-7 py-4 text-white shadow-xl backdrop-blur-sm">
                                 {CATEGORIES.map((c, i) => (
                                     <div key={c.label} className="flex items-center gap-2">
                                         {i > 0 && (
@@ -162,9 +161,10 @@ const Home = () => {
                             {/* CTA */}
                             <Link
                                 to="productos"
-                                className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#ff1f8e] px-10 py-4 text-lg font-extrabold uppercase tracking-wide text-white shadow-[0_0_0_4px_rgba(255,31,142,0.35),0_10px_30px_rgba(255,31,142,0.5)] transition hover:scale-[1.03] hover:bg-[#ff3d9e]"
+                                className="mt-8 inline-flex items-center gap-2 md:gap-3 rounded-full bg-[#ff1f8e] px-6 py-3 text-sm md:px-10 md:py-4 md:text-lg font-extrabold uppercase tracking-wide text-white shadow-[0_0_0_4px_rgba(255,31,142,0.35),0_10px_30px_rgba(255,31,142,0.5)] transition hover:scale-[1.03] hover:bg-[#ff3d9e]"
                             >
-                                <MdShoppingCart size={24} />
+                                <MdShoppingCart size={18} className="md:hidden" />
+                                <MdShoppingCart size={24} className="hidden md:inline" />
                                 Ver catálogo
                             </Link>
 
