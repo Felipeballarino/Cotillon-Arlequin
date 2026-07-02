@@ -6,11 +6,20 @@ import FiltrosCatalogos from '../../features/products/components/organisms/Filtr
 import ProductCard from '../../features/products/components/organisms/ProductCard';
 import { useProductsStore } from '../../store/productsStore';
 import Seo from '../../shared/seo/Seo';
-import { Spin } from 'antd';
+import { Spin, Pagination } from 'antd';
 
 // import ProductCardWpp from '../components/ProductCardWpp';
 
+const PAGE_SIZE = 24;
 
+const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
 
 const Productos = () => {
     const { products } = useProductsStore();
@@ -23,6 +32,20 @@ const Productos = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const [productosDesordenados, setProductosDesordenados] = useState([]);
+
+    const [paginaActual, setPaginaActual] = useState(1);
+
+
+    // Desordenar los productos cada vez que cambia la lista original
+    useEffect(() => {
+        setProductosDesordenados(shuffleArray(products));
+    }, [products]);
+
+    // Volver a la primera página cuando cambian los filtros
+    useEffect(() => {
+        setPaginaActual(1);
+    }, [categoriaSeleccionada, busqueda]);
 
     // Leer de la URL al cargar
     useEffect(() => {
@@ -51,7 +74,7 @@ const Productos = () => {
         }, 500);
     }
 
-    const productosFiltrados = products.filter(product => {
+    const productosFiltrados = productosDesordenados.filter(product => {
         const coincideCategoria = categoriaSeleccionada.length > 0 ? categoriaSeleccionada.includes(product.grupo) : true;
         const coincideBusqueda = busqueda
             ? [
@@ -68,9 +91,10 @@ const Productos = () => {
         return coincideCategoria && coincideBusqueda;
     });
 
-
-
-    console.log("productosFiltrados", productosFiltrados);
+    const productosPaginados = productosFiltrados.slice(
+        (paginaActual - 1) * PAGE_SIZE,
+        paginaActual * PAGE_SIZE
+    );
     return (
         <>
             <Seo title="Catalogo" description="Catalogo web" />
@@ -99,8 +123,8 @@ const Productos = () => {
                 "
                         >
                             {!loading ? (
-                                productosFiltrados.length > 0 ?
-                                    productosFiltrados.map(product => (
+                                productosPaginados.length > 0 ?
+                                    productosPaginados.map(product => (
                                         <ProductCard key={product.id} product={product} />
                                     ))
                                     :
@@ -115,6 +139,18 @@ const Productos = () => {
                                 </div>
                             )}
                         </div>
+
+                        {!loading && productosFiltrados.length > PAGE_SIZE && (
+                            <div className="md:col-span-6 md:col-start-3 flex justify-center mt-4">
+                                <Pagination
+                                    current={paginaActual}
+                                    pageSize={PAGE_SIZE}
+                                    total={productosFiltrados.length}
+                                    onChange={(pagina) => setPaginaActual(pagina)}
+                                    showSizeChanger={false}
+                                />
+                            </div>
+                        )}
 
                     </div>
                 </div>
